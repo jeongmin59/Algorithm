@@ -6,23 +6,19 @@
 '''
 
 mushroom = [int(input()) for _ in range(10)]
-ans = 0
+cnt = ans = 0
 
-for i in range(len(mushroom)):
-    ans += mushroom[i]
+while cnt <= 9:
+    ans += mushroom[cnt]
+
     if ans == 100:
-        print(ans)
         break
-    if ans > 100:
-        cur = ans
-        prev = ans - mushroom[i]
-        if abs(100 - cur) < abs(100 - prev):
-            print(cur)
-            break
-        elif abs(100 - cur) == abs(100 - prev):
-            print(cur)
+    elif ans > 100:
+        if ans - 100 <= 100 - (ans - mushroom[cnt]):
             break
         else:
-            print(prev)
+            ans -= mushroom[cnt]
             break
+    cnt += 1
+
 print(ans)
